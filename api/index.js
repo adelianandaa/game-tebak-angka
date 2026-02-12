@@ -1,4 +1,15 @@
 export default function handler(req, res) {
+
+  // ✅ WAJIB biar Flutter Web bisa akses
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Methods", "GET, OPTIONS");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+
+  // handle preflight request
+  if (req.method === "OPTIONS") {
+    return res.status(200).end();
+  }
+
   const min = parseInt(req.query.min) || 1;
   const max = parseInt(req.query.max) || 100;
 
